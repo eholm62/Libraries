@@ -26,4 +26,11 @@ public class BigNum
 		Fraction fraction = this.fraction.add(other.fraction);
 		return new BigNum(integer, fraction);
 	}
+
+	public BigNum subtract(BigNum other)
+	{
+		BigInteger integer = this.integer.subtract(other.integer);
+		Fraction fraction = this.fraction.subtract(other.fraction);
+		return new BigNum(integer, fraction);
+	}
 }
