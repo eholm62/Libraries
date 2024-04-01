@@ -2,7 +2,7 @@ package mymath;
 
 import java.util.ArrayList;
 
-// pretty inefficient, lots of room for optimization
+// very inefficient, room for optimization
 public class Matrix
 {
 	private final double[][] data;
