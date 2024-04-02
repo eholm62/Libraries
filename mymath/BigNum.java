@@ -127,6 +127,16 @@ public class BigNum // eventually extend Number
 		return new BigNum(newInteger, newFraction);
 	}
 
+	public BigNum add(BigNum other)
+	{
+		return simplify(this.integer.add(other.integer), this.fraction + other.fraction);
+	}
+
+	public BigNum subtract(BigNum other)
+	{
+		return simplify(this.integer.subtract(other.integer), this.fraction - other.fraction);
+	}
+
 	public String toString()
 	{
 		if (this.integer.compareTo(BigInteger.ZERO) == -1)
