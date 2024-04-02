@@ -5,7 +5,9 @@ import java.util.Arrays;
 
 public class BigNum
 {
-	public static final 
+	public static final BigNum ZERO = new BigNum(BigInteger.ZERO, 0.0);
+	public static final BigNum ONE = new BigNum(BigInteger.ONE, 0.0);
+	public static final BigNum TWO = new BigNum(BigInteger.TWO, 0.0);
 	
 	private final BigInteger integer;
 	private final double fraction;
@@ -15,8 +17,11 @@ public class BigNum
 	 * and fractional part fraction.
 	 * Keep in mind fractional part  is always added.
 	 */
-	public BigNum(BigInteger integer, double fraction)
+	public BigNum(BigInteger integer, double fraction) throws IllegalArgumentException
 	{
+		if (fraction >= 1.0 || fraction <= -1.0)
+			throw new IllegalArgumentException("Fractional part must be between (-1.0, 1.0)");
+
 		if (fraction < 0.0)
 		{
 			this.integer = integer.subtract(BigInteger.ONE);
@@ -41,8 +46,11 @@ public class BigNum
 	 * and fractional part fraction.
 	 * Keep in mind fractional part is always added.
 	 */
-	public BigNum(long integer, double fraction)
+	public BigNum(long integer, double fraction) throws IllegalArgumentException
 	{
+		if (fraction >= 1.0 || fraction <= -1.0)
+			throw new IllegalArgumentException("Fractional part must be between (-1.0, 1.0)");
+
 		if (fraction < 0.0)
 		{
 			this.integer = BigInteger.valueOf(integer).subtract(BigInteger.ONE);
@@ -73,6 +81,16 @@ public class BigNum
 		this.integer = new BigInteger(byteArray);
 		this.fraction = 0.0;
 	}	
+
+	/** Takes in a BigInteger for the integer part,
+	 * a double for the fractional part, and simplifies
+	 * such that the fractional part is positive and less
+	 * than 1. It changes the integer part accordingly.
+	 */
+	public static BigNum simplify(BigInteger integer, double fraction)
+	{
+
+	}
 
 	public String toString()
 	{
