@@ -3,7 +3,10 @@ package mymath;
 import java.math.BigInteger;
 import java.util.Arrays;
 
-public class BigNum
+/** Number type with an arbitrary precision integer part
+ * and a double precision float as the fractional part.
+ */
+public class BigNum // eventually extend Number
 {
 	public static final BigNum ZERO = new BigNum(BigInteger.ZERO, 0.0);
 	public static final BigNum ONE = new BigNum(BigInteger.ONE, 0.0);
@@ -86,10 +89,42 @@ public class BigNum
 	 * a double for the fractional part, and simplifies
 	 * such that the fractional part is positive and less
 	 * than 1. It changes the integer part accordingly.
+	 * Requires that fractional part is between (-2.0, 2.0).
 	 */
-	public static BigNum simplify(BigInteger integer, double fraction)
+	public static BigNum simplify(BigInteger integer, double fraction) throws IllegalArgumentException
 	{
+		if (fraction <= -2.0 || fraction >= 2.0) throw new IllegalArgumentException(
+			"Fractional part must be between (-2.0, 2.0)"
+		);
+		
+		BigInteger newInteger;
+		double newFraction;
 
+		if (fraction >= 1.0)
+		{
+			newInteger = integer.add(BigInteger.ONE);
+			newFraction = fraction - 1.0;
+		}
+		else if (fraction <= -1.0)
+		{
+			newInteger = integer.subtract(BigInteger.ONE);
+			newFraction = fraction + 1.0;
+		}
+		else 
+		{
+			if (fraction < 0.0) 
+			{
+				newInteger = integer.subtract(BigInteger.ONE);
+				newFraction = 1.0 + fraction;
+			}
+			else
+			{
+				newInteger = integer;
+		   	 	newFraction = fraction;
+			}
+		}
+
+		return new BigNum(newInteger, newFraction);
 	}
 
 	public String toString()
