@@ -1,4 +1,4 @@
-package mymath;
+package mymath.numbers;
 
 import java.math.BigInteger;
 import java.util.Arrays;

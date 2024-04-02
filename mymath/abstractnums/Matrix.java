@@ -1,4 +1,4 @@
-package mymath;
+package mymath.abstractnums;
 
 import java.util.ArrayList;
 
