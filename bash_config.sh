@@ -11,7 +11,7 @@ alias config_bash=". $base_dir/bash_config.sh"
 export bash_config="$base_dir/bash_config.sh"
 
 # classpath environment var
-export CLASSPATH="."
+export CLASSPATH=".:*/"
 
 # aliases
 alias jdb="jdb -sourcepath $CLASSPATH"
