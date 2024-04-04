@@ -1,1 +1,1 @@
-mymath lib v2.0
+mymath lib v1.2
