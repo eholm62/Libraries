@@ -18,6 +18,19 @@ public class Utility
         );
 
         long n = 100000000000000000L;
-        return integer.multiply(BigInteger.valueOf((long)(part * n))).divide(BigInteger.valueOf(n));
+
+        int power = 0;
+        while (part <= 0.000000000000001) 
+        {
+            power++;
+            part = Math.sqrt(part);
+        }
+
+        for (int i = 0; i < Math.pow(2, power); i++) 
+        {
+            integer = integer.multiply(BigInteger.valueOf((long)(part * n))).divide(BigInteger.valueOf(n));
+        }
+
+        return integer;
     }
 }
