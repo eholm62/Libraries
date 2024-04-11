@@ -6,10 +6,10 @@ public class Utility
 {
     // can be made more precise and efficient
     /** Takes a BigInteger and a double and returns the
-     * a BigInteger below and very close to the expected 
+     * a BigInteger realtively close to the expected 
      * mathematical result of the integer times the double.
      * (ex. partial(101, 0.25) -> 25)
-     * Does not work with doubles less than 0.00000000000000001 currently.
+     * inexact
      */
     public static BigInteger partial(BigInteger integer, double part) throws IllegalArgumentException
     {
@@ -17,10 +17,11 @@ public class Utility
             "Double parameter must be between [-1.0, 1.0]"
         );
 
+        // 10 to the 17th
         long n = 100000000000000000L;
 
         int power = 0;
-        while (part <= 0.000000000000001) 
+        while (part < 0.00000000000000001) 
         {
             power++;
             part = Math.sqrt(part);
